@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Walking Stick Using Arduino UNO | The BioChem Chronicles</title>
+  <meta name="description" content="An Arduino smart walking stick prototype that uses an HC-SR04 ultrasonic sensor, buzzer, and LED to detect nearby obstacles." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Smart Walking Stick Using Arduino UNO" />
+  <meta property="og:description" content="An Arduino smart walking stick prototype that uses an HC-SR04 ultrasonic sensor, buzzer, and LED to detect nearby obstacles." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/smart-walking-stick.svg" />
+  <link rel="canonical" href="../articles/smart-walking-stick.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Smart Walking Stick Using Arduino UNO</span>
+          </nav>
+          <p class="eyebrow">Assistive Technology</p>
+          <h1>Smart Walking Stick Using Arduino UNO</h1>
+          <p class="lead">An Arduino smart walking stick prototype that uses an HC-SR04 ultrasonic sensor, buzzer, and LED to detect nearby obstacles.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>7 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Assistive Technology</span><span>Ultrasonic Sensor</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/smart-walking-stick-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/smart-walking-stick.svg" alt="System diagram for Smart Walking Stick Using Arduino UNO" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO</li>
+              <li>HC-SR04 ultrasonic sensor</li>
+              <li>DC buzzer</li>
+              <li>LED</li>
+              <li>9V battery with connector</li>
+              <li>Jumper wires</li>
+              <li>PVC pipe or walking stick</li>
+              <li>Tape, glue, or mounting material</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The smart walking stick uses an ultrasonic sensor to measure distance in front of the user. If an object is too close, the Arduino triggers a buzzer and LED alert.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is an educational prototype. It should not replace certified mobility aids, professional training, or caregiver support.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>A traditional walking stick gives tactile feedback only after contact. A sensor-based prototype can explore how early obstacle alerts might support safer movement.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because assistive technology shows how simple components can address real human needs. It also taught me to think about user safety, not just whether a circuit works.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>The HC-SR04 sensor sends out ultrasonic pulses and measures the echo time. The Arduino uses that time to estimate distance. If the distance is below a chosen threshold, the alert system turns on.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, HC-SR04 sensor, buzzer, LED, battery, wires, and stick body.</li>
+              <li>Mount the sensor so it faces forward and is not blocked.</li>
+              <li>Connect the sensor power, ground, trigger, and echo pins according to the chosen Arduino sketch.</li>
+              <li>Connect the buzzer and LED outputs.</li>
+              <li>Upload a distance-measuring sketch.</li>
+              <li>Test readings with obstacles at different distances.</li>
+              <li>Set a reasonable alert threshold for the prototype.</li>
+              <li>Secure wires so they do not interfere with movement.</li>
+              <li>Test only in controlled conditions with supervision.</li>
+              <li>Document what worked and what needs improvement.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>Testing should happen in a controlled space first, using obstacles at known distances. Different surfaces and angles can affect ultrasonic readings, so the prototype needs repeated testing.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>Ultrasonic readings varied with object angle and surface texture.</li>
+              <li>The device needed to be mounted securely without making the stick awkward.</li>
+              <li>Safety wording mattered because this is an assistive device prototype.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Assistive devices need user-centered thinking from the beginning.</li>
+              <li>A working sensor is not enough if the alert is confusing or unreliable.</li>
+              <li>Testing conditions matter, especially for safety-related prototypes.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add vibration feedback for quieter environments.</li>
+              <li>Add more sensors for wider coverage.</li>
+              <li>Add GPS or caregiver alerts only after careful privacy and safety review.</li>
+              <li>Improve the enclosure and battery placement.</li>
+              <li>Test with guidance from accessibility mentors.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>This prototype is educational and should not replace certified mobility aids or professional support.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="automatic-pill-dispenser.html"><span>Assistive Technology</span><strong>Automatic Pill Dispenser</strong><small>7 min read</small></a><a class="related-card" href="blood-oxygen-heart-rate-monitor.html"><span>Health Monitoring</span><strong>Blood Oxygen and Heart Rate Monitor</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="air-quality-monitor.html">← Previous: Portable Air Quality Monitor</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="biochem-chronicles-introduction.html">Next: Why I Started The BioChem Chronicles →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

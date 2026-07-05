@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatic Pill Dispenser | The BioChem Chronicles</title>
+  <meta name="description" content="A timer-based Arduino dispenser concept that uses a real-time clock, servo motor, display, buzzer, and LEDs to support medication reminders." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Automatic Pill Dispenser" />
+  <meta property="og:description" content="A timer-based Arduino dispenser concept that uses a real-time clock, servo motor, display, buzzer, and LEDs to support medication reminders." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/automatic-pill-dispenser.svg" />
+  <link rel="canonical" href="../articles/automatic-pill-dispenser.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Automatic Pill Dispenser</span>
+          </nav>
+          <p class="eyebrow">Assistive Technology</p>
+          <h1>Automatic Pill Dispenser</h1>
+          <p class="lead">A timer-based Arduino dispenser concept that uses a real-time clock, servo motor, display, buzzer, and LEDs to support medication reminders.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>7 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Assistive Technology</span><span>Health Monitoring</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/automatic-pill-dispenser-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/automatic-pill-dispenser.svg" alt="System diagram for Automatic Pill Dispenser" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO R3</li>
+              <li>Pill organizer or compartment wheel</li>
+              <li>Servo motor</li>
+              <li>Real-time clock module</li>
+              <li>LCD display</li>
+              <li>Buzzer</li>
+              <li>LEDs</li>
+              <li>Jumper wires</li>
+              <li>Power source</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Soldering iron if making a permanent build</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The prototype uses a real-time clock to track scheduled times. When a scheduled time is reached, the Arduino can trigger a servo to rotate a compartment and activate buzzer or LED reminders.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is an educational prototype. Real medication devices need stronger safety testing and should not be used without supervision.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Remembering medication on time can be difficult, especially when a person has multiple doses or a caregiver is not always present. A simple dispenser prototype can show how reminders and mechanical dispensing might work together.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because it combines electronics with a real healthcare problem. It also made me think about reliability, user reminders, and safety in a more practical way.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>The RTC module keeps time, the Arduino compares the current time with a stored schedule, and the servo motor moves the dispenser mechanism. The display and alerts tell the user when a dose is ready.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, RTC module, servo motor, display, buzzer, LEDs, and organizer.</li>
+              <li>Plan the mechanical layout before wiring the electronics.</li>
+              <li>Connect and test the RTC module first.</li>
+              <li>Connect the servo motor and test small movements.</li>
+              <li>Connect the display and alert components.</li>
+              <li>Write basic logic for one scheduled reminder.</li>
+              <li>Test the servo movement without medication first.</li>
+              <li>Calibrate the servo position so one compartment lines up at a time.</li>
+              <li>Run repeated dry tests to check reliability.</li>
+              <li>Document safety limits and future improvements.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>Testing should be done without medication at first. The key checks are time accuracy, servo alignment, alert timing, and whether the mechanism ever skips or jams.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>Mechanical alignment was just as important as the code.</li>
+              <li>A small timing error could create a larger usability problem.</li>
+              <li>The project needed careful wording because medication support is safety-sensitive.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Assistive technology needs reliability, not just a working demo.</li>
+              <li>A clear alert system matters because users need to understand what the device is doing.</li>
+              <li>Physical design and software logic have to work together.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add caregiver notifications.</li>
+              <li>Add dose logging.</li>
+              <li>Add voice alerts or vibration feedback.</li>
+              <li>Improve the compartment design and enclosure.</li>
+              <li>Add missed-dose detection after careful testing.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>This prototype is for learning and demonstration only. It is not a medical device and should not be used for diagnosis or treatment.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="blood-oxygen-heart-rate-monitor.html"><span>Health Monitoring</span><strong>Blood Oxygen and Heart Rate Monitor</strong><small>7 min read</small></a><a class="related-card" href="smart-walking-stick.html"><span>Assistive Technology</span><strong>Smart Walking Stick Using Arduino UNO</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="blood-oxygen-heart-rate-monitor.html">← Previous: Blood Oxygen and Heart Rate Monitor</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="weather-station.html">Next: Building My Weather Station →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

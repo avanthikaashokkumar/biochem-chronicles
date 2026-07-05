@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creating a Soil Moisture Meter | The BioChem Chronicles</title>
+  <meta name="description" content="An Arduino-based soil moisture project that uses a capacitive sensor to understand watering needs and improve plant care decisions." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Creating a Soil Moisture Meter" />
+  <meta property="og:description" content="An Arduino-based soil moisture project that uses a capacitive sensor to understand watering needs and improve plant care decisions." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/soil-moisture-meter.svg" />
+  <link rel="canonical" href="../articles/soil-moisture-meter.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Creating a Soil Moisture Meter</span>
+          </nav>
+          <p class="eyebrow">Environmental Monitoring</p>
+          <h1>Creating a Soil Moisture Meter</h1>
+          <p class="lead">An Arduino-based soil moisture project that uses a capacitive sensor to understand watering needs and improve plant care decisions.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>6 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Environmental Monitoring</span><span>Sensors</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/soil-moisture-meter-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/soil-moisture-meter.svg" alt="System diagram for Creating a Soil Moisture Meter" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO</li>
+              <li>Capacitive soil moisture sensor</li>
+              <li>Breadboard</li>
+              <li>Jumper wires</li>
+              <li>LCD or OLED display</li>
+              <li>USB cable or battery power source</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The prototype uses a capacitive soil moisture sensor connected to an Arduino. The Arduino reads the sensor output and displays a moisture level. A future version could add soil pH, temperature, wireless logging, or a small dashboard.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is a learning prototype. Low-cost soil sensors provide useful trends, but they should be calibrated and treated as approximate indicators.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Plants can be damaged by both overwatering and underwatering. A low-cost soil moisture meter gives a quick reading instead of relying only on guessing from the soil surface.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because it connects environmental science with electronics in a very practical way. It also helped me understand how a sensor turns a physical condition, like water in soil, into a number that can be displayed and compared.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>The sensor responds to changes in the soil around it. Moist soil and dry soil produce different readings, and the Arduino converts those readings into a level that can be shown on a display or serial monitor.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, soil moisture sensor, display, breadboard, and wires.</li>
+              <li>Read the sensor documentation because exact pins can vary by module.</li>
+              <li>Connect power, ground, and signal from the sensor to the Arduino.</li>
+              <li>Connect the display if using one, or start with Serial Monitor for the first test.</li>
+              <li>Upload a basic sketch that prints raw sensor readings.</li>
+              <li>Test the sensor in dry soil and wet soil to understand its range.</li>
+              <li>Create a simple scale such as dry, medium, and wet after calibration.</li>
+              <li>Place the circuit in a safer temporary enclosure before using it near plants.</li>
+              <li>Document readings from different soil samples.</li>
+              <li>Plan upgrades such as data logging or Bluetooth output.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>A simple calibration process compares readings in dry soil, damp soil, and saturated soil. The exact values depend on the sensor model and soil type, so the calibration should be repeated for each setup.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>The sensor readings changed depending on soil type and how deeply the probe was placed.</li>
+              <li>The first raw values were not meaningful until they were tested against known dry and wet conditions.</li>
+              <li>Water and electronics require careful separation, so enclosure design matters.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Calibration is what turns a sensor reading into useful information.</li>
+              <li>Environmental data is messy because real conditions change.</li>
+              <li>A small device can teach a lot about sensing, coding, and plant care.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add soil temperature and pH sensors.</li>
+              <li>Add Wi-Fi or Bluetooth for wireless readings.</li>
+              <li>Log readings over time and graph watering patterns.</li>
+              <li>Build a cleaner enclosure for repeated use.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>Low-cost environmental sensors need calibration and should be treated as approximate indicators, not certified measurements.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="weather-station.html"><span>Environmental Monitoring</span><strong>Building My Weather Station</strong><small>6 min read</small></a><a class="related-card" href="air-quality-monitor.html"><span>Environmental Monitoring</span><strong>Portable Air Quality Monitor</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="biochem-chronicles-introduction.html">← Previous: Why I Started The BioChem Chronicles</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="diy-thermal-gun.html">Next: DIY Temperature Thermal Gun →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

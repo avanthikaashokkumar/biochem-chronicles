@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blood Oxygen and Heart Rate Monitor | The BioChem Chronicles</title>
+  <meta name="description" content="A MAX30102-based Arduino project that explores how pulse oximetry sensors estimate heart rate and blood oxygen trends." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Blood Oxygen and Heart Rate Monitor" />
+  <meta property="og:description" content="A MAX30102-based Arduino project that explores how pulse oximetry sensors estimate heart rate and blood oxygen trends." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/blood-oxygen-heart-rate-monitor.svg" />
+  <link rel="canonical" href="../articles/blood-oxygen-heart-rate-monitor.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Blood Oxygen and Heart Rate Monitor</span>
+          </nav>
+          <p class="eyebrow">Health Monitoring</p>
+          <h1>Blood Oxygen and Heart Rate Monitor</h1>
+          <p class="lead">A MAX30102-based Arduino project that explores how pulse oximetry sensors estimate heart rate and blood oxygen trends.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>7 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Biosensors</span><span>Health Monitoring</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/blood-oxygen-heart-rate-monitor-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/blood-oxygen-heart-rate-monitor.svg" alt="System diagram for Blood Oxygen and Heart Rate Monitor" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO R3</li>
+              <li>MAX30102 pulse oximetry sensor module</li>
+              <li>LCD 1602 or OLED display</li>
+              <li>Breadboard</li>
+              <li>Jumper wires</li>
+              <li>USB cable or battery source</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The prototype uses a MAX30102 sensor to detect pulse-related changes in reflected light. An Arduino processes the sensor data and displays estimated heart rate and SpO2 values on a screen.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is an educational prototype. It is not clinically validated and should not be used for medical decisions.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Heart rate and blood oxygen are common vital signs, but the technology behind them can feel like a black box. This project breaks down the sensor, signal, and display process at a beginner level.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because I am interested in biomedical devices and health data. The project helped me connect biology, light-based sensing, and microcontroller programming.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>The sensor shines red and infrared light into a fingertip and measures reflected light. Blood volume changes with each heartbeat, which creates a waveform. The Arduino uses that signal to estimate beats per minute and oxygen saturation trends.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, MAX30102 module, display, breadboard, and jumper wires.</li>
+              <li>Check the module pin labels and voltage requirements before wiring.</li>
+              <li>Connect the sensor to the Arduino using I2C pins or the pins required by the module.</li>
+              <li>Connect the display for real-time output.</li>
+              <li>Install a reliable MAX30102 Arduino library.</li>
+              <li>Upload a test sketch and check whether the sensor is detected.</li>
+              <li>Place a fingertip steadily on the sensor and observe the raw signal.</li>
+              <li>Reduce movement and block strong ambient light during testing.</li>
+              <li>Compare repeated readings for consistency, not clinical accuracy.</li>
+              <li>Document what affects the readings.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>The prototype should be tested for stable contact, repeated readings, and sensitivity to motion. Any comparison with commercial devices should be described as informal unless a proper validation method is used.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>Finger movement created noisy readings.</li>
+              <li>Ambient light affected the sensor when the finger was not placed steadily.</li>
+              <li>It was important not to describe the prototype as medically accurate.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Biomedical data starts as a physical signal.</li>
+              <li>Filtering and stability matter before a reading becomes useful.</li>
+              <li>Honest safety notes are essential for health-related projects.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add simple signal visualization.</li>
+              <li>Add Bluetooth data transfer to a phone or laptop.</li>
+              <li>Log readings over time for learning analysis.</li>
+              <li>Improve the finger placement housing.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>This prototype is for learning and demonstration only. It is not a medical device and should not be used for diagnosis or treatment.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="diy-thermal-gun.html"><span>Health Monitoring</span><strong>DIY Temperature Thermal Gun</strong><small>6 min read</small></a><a class="related-card" href="automatic-pill-dispenser.html"><span>Assistive Technology</span><strong>Automatic Pill Dispenser</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="diy-thermal-gun.html">← Previous: DIY Temperature Thermal Gun</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="automatic-pill-dispenser.html">Next: Automatic Pill Dispenser →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

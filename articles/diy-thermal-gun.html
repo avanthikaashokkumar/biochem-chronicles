@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIY Temperature Thermal Gun | The BioChem Chronicles</title>
+  <meta name="description" content="A non-contact temperature project that uses an infrared sensor, Arduino, and display to explore how surface temperature can be measured." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="DIY Temperature Thermal Gun" />
+  <meta property="og:description" content="A non-contact temperature project that uses an infrared sensor, Arduino, and display to explore how surface temperature can be measured." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/diy-thermal-gun.svg" />
+  <link rel="canonical" href="../articles/diy-thermal-gun.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>DIY Temperature Thermal Gun</span>
+          </nav>
+          <p class="eyebrow">Health Monitoring</p>
+          <h1>DIY Temperature Thermal Gun</h1>
+          <p class="lead">A non-contact temperature project that uses an infrared sensor, Arduino, and display to explore how surface temperature can be measured.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>6 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Health Monitoring</span><span>Infrared Sensor</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/diy-thermal-gun-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/diy-thermal-gun.svg" alt="System diagram for DIY Temperature Thermal Gun" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO or compatible board</li>
+              <li>Infrared temperature sensor such as MLX90614 or AMG8833</li>
+              <li>OLED or LCD display</li>
+              <li>Jumper wires</li>
+              <li>Battery pack or USB power</li>
+              <li>Optional enclosure</li>
+              <li>Optional laser pointer for aiming</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Soldering iron if building a permanent version</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The thermal gun uses an infrared temperature sensor connected to an Arduino. The sensor reads emitted infrared radiation from a surface, and the Arduino displays the temperature on a small screen.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is a learning prototype. It is not a medical thermometer and should not be used to diagnose fever or illness.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Temperature can be useful to measure without contact, especially for surfaces, electronics, appliances, or quick experiments. Commercial devices hide the electronics, so building a prototype makes the measurement process easier to understand.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this to learn how infrared sensors work and how a microcontroller converts sensor data into a readable temperature value.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>Objects emit infrared radiation based on their temperature. The sensor detects that radiation and sends a reading to the microcontroller. The Arduino processes the value and displays it as temperature.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, infrared sensor, display, wires, and power source.</li>
+              <li>Check the sensor datasheet or library documentation for the correct wiring.</li>
+              <li>Connect the sensor to the Arduino using the required communication pins.</li>
+              <li>Connect the display module.</li>
+              <li>Install the needed Arduino library for the sensor.</li>
+              <li>Upload a basic example sketch and check readings on Serial Monitor.</li>
+              <li>Test the sensor on objects with stable temperatures.</li>
+              <li>Compare readings with a known thermometer for a rough check.</li>
+              <li>Mount the sensor so it has a clear line of sight.</li>
+              <li>Document limitations such as distance, surface material, and room conditions.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>Testing should include objects at room temperature and slightly warmer or cooler objects. Readings can change based on distance, surface color, and emissivity, so the prototype should be treated as a learning tool.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>Different surfaces can give different readings even when they feel similar.</li>
+              <li>The sensor needs a clear view of the target.</li>
+              <li>Aiming and distance matter more than I expected.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Non-contact measurement is useful but sensitive to setup.</li>
+              <li>A sensor reading needs context before it can be trusted.</li>
+              <li>Health-related prototypes need careful safety language.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add a better enclosure with a clear display window.</li>
+              <li>Add data logging for repeated measurements.</li>
+              <li>Add calibration options for different surface types.</li>
+              <li>Compare different infrared sensor modules.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>This prototype is for learning and demonstration only. It is not a medical device and should not be used for diagnosis or treatment.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="blood-oxygen-heart-rate-monitor.html"><span>Health Monitoring</span><strong>Blood Oxygen and Heart Rate Monitor</strong><small>7 min read</small></a><a class="related-card" href="automatic-pill-dispenser.html"><span>Assistive Technology</span><strong>Automatic Pill Dispenser</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="soil-moisture-meter.html">← Previous: Creating a Soil Moisture Meter</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="blood-oxygen-heart-rate-monitor.html">Next: Blood Oxygen and Heart Rate Monitor →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

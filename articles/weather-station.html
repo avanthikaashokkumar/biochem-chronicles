@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building My Weather Station | The BioChem Chronicles</title>
+  <meta name="description" content="A local weather station using Arduino, a DHT11 sensor, RTC module, and display to track temperature and humidity." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Building My Weather Station" />
+  <meta property="og:description" content="A local weather station using Arduino, a DHT11 sensor, RTC module, and display to track temperature and humidity." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/weather-station.svg" />
+  <link rel="canonical" href="../articles/weather-station.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Building My Weather Station</span>
+          </nav>
+          <p class="eyebrow">Environmental Monitoring</p>
+          <h1>Building My Weather Station</h1>
+          <p class="lead">A local weather station using Arduino, a DHT11 sensor, RTC module, and display to track temperature and humidity.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>6 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Environmental Monitoring</span><span>Data Science</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/weather-station-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/weather-station.svg" alt="System diagram for Building My Weather Station" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO</li>
+              <li>DHT11 temperature and humidity sensor</li>
+              <li>RTC module</li>
+              <li>LCD or OLED display</li>
+              <li>Breadboard</li>
+              <li>Jumper wires</li>
+              <li>USB cable or battery source</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The weather station uses a DHT11 sensor to measure temperature and humidity. An RTC module can time-stamp readings, and the Arduino displays the values on a screen.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is a student-built weather monitoring prototype. Readings from low-cost sensors are useful for learning but should not replace certified weather instruments.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Weather apps usually report conditions for a wider area, not the exact temperature and humidity around a desk, balcony, garden, or classroom. A local station gives more immediate environmental context.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because I wanted to see how weather data is collected instead of only reading a forecast. It was also a good way to practice sensors, displays, and simple environmental data collection.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>The DHT11 sensor measures humidity and temperature, sends digital data to the Arduino, and the Arduino updates the display. The RTC helps keep the readings connected to time.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, DHT11 sensor, RTC module, display, wires, and breadboard.</li>
+              <li>Connect the DHT11 sensor according to the module pin labels.</li>
+              <li>Upload a basic DHT11 test sketch and check Serial Monitor readings.</li>
+              <li>Connect the display and show temperature and humidity.</li>
+              <li>Add the RTC module for time-stamped readings if needed.</li>
+              <li>Place the sensor away from direct sunlight and water.</li>
+              <li>Compare readings with a known thermometer or hygrometer for a rough check.</li>
+              <li>Record readings at different times of day.</li>
+              <li>Improve the layout and protect the circuit.</li>
+              <li>Plan data logging or graphing as a next step.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>Readings should be checked against a reliable thermometer or hygrometer when possible. Placement matters because sunlight, body heat, and moisture can change the results.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>Sensor placement affected the readings.</li>
+              <li>Different components had to work together without loose connections.</li>
+              <li>The DHT11 is simple and affordable, but not extremely precise.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Weather data is local and depends heavily on sensor placement.</li>
+              <li>Time-stamping makes environmental data more useful.</li>
+              <li>Simple data collection can lead naturally into data science questions.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add rainfall, wind, or pressure sensors.</li>
+              <li>Save readings to an SD card or cloud dashboard.</li>
+              <li>Create graphs of daily changes.</li>
+              <li>Use a more accurate sensor for comparison.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>Low-cost environmental sensors need calibration and should be treated as approximate indicators, not certified measurements.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="soil-moisture-meter.html"><span>Environmental Monitoring</span><strong>Creating a Soil Moisture Meter</strong><small>6 min read</small></a><a class="related-card" href="air-quality-monitor.html"><span>Environmental Monitoring</span><strong>Portable Air Quality Monitor</strong><small>7 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="automatic-pill-dispenser.html">← Previous: Automatic Pill Dispenser</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="air-quality-monitor.html">Next: Portable Air Quality Monitor →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

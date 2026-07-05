@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portable Air Quality Monitor | The BioChem Chronicles</title>
+  <meta name="description" content="An Arduino air quality monitoring prototype using DHT11 and MQ sensors to explore gas sensing, calibration, and environmental awareness." />
+  <meta name="author" content="Avanthika Ashokkumar" />
+  <meta property="og:title" content="Portable Air Quality Monitor" />
+  <meta property="og:description" content="An Arduino air quality monitoring prototype using DHT11 and MQ sensors to explore gas sensing, calibration, and environmental awareness." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/diagrams/air-quality-monitor.svg" />
+  <link rel="canonical" href="../articles/air-quality-monitor.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body data-page="article" class="article-page">
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="../index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="../favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li><a href="../index.html#explainers">3D Explainers</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#mentors">For Mentors</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <article class="article-layout">
+    <header class="article-hero section-pad compact-hero">
+      <div class="container article-header-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a><span>/</span><a href="../articles.html">Articles</a><span>/</span><span>Portable Air Quality Monitor</span>
+          </nav>
+          <p class="eyebrow">Environmental Monitoring</p>
+          <h1>Portable Air Quality Monitor</h1>
+          <p class="lead">An Arduino air quality monitoring prototype using DHT11 and MQ sensors to explore gas sensing, calibration, and environmental awareness.</p>
+          <div class="article-meta">
+            <span>Completed Prototype</span>
+            <span>7 min read</span>
+            <span>Student project note</span>
+          </div>
+          <div class="tag-row"><span>Arduino</span><span>Environmental Monitoring</span><span>Air Quality</span></div>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../assets/summaries/air-quality-monitor-summary.pdf" download>Download one-page project summary</a>
+            <button class="btn btn-secondary copy-link" type="button">Copy article link</button>
+          </div>
+        </div>
+        <figure class="article-figure">
+          <img src="../assets/diagrams/air-quality-monitor.svg" alt="System diagram for Portable Air Quality Monitor" width="828" height="360" />
+          <figcaption>Custom diagram created for this project page.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="container article-content-grid">
+      <aside class="article-sidebar" aria-label="Article details">
+        <div class="sidebar-card">
+          <h2>Materials</h2>
+          <ul>              <li>Arduino UNO</li>
+              <li>USB cable</li>
+              <li>Breadboard</li>
+              <li>Jumper wires</li>
+              <li>DHT11 sensor</li>
+              <li>MQ-3 sensor</li>
+              <li>MQ-9 sensor</li>
+              <li>MQ-135 sensor</li>
+              <li>LCD or OLED display</li>
+              <li>Optional buzzer or LED alert</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Tools</h2>
+          <ul>              <li>Arduino IDE</li>
+              <li>Computer</li>
+              <li>Basic hand tools</li>
+              <li>Multimeter if available</li></ul>
+        </div>
+        <div class="sidebar-card">
+          <h2>Optional upgrades</h2>
+          <ul>
+            <li>Bluetooth or Wi-Fi module</li>
+            <li>Data logging</li>
+            <li>Mobile or web dashboard</li>
+            <li>Cleaner enclosure</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="article-body">
+        <section>
+          <h2>Project overview</h2>
+          <p>The prototype uses a DHT11 sensor for temperature and humidity and MQ-series sensors for gas-related indicators. The Arduino reads the sensors and can show values or trigger simple alerts.</p>
+          <div class="honesty-note"><strong>Status note:</strong> This is a low-cost learning prototype. MQ sensor readings need calibration and should not be treated as certified air quality measurements.</div>
+        </section>
+
+        <section>
+          <h2>Problem being solved</h2>
+          <p>Air quality can change between rooms, roads, and neighborhoods. A portable prototype helps explore how sensors detect changes in the surrounding air, even though it cannot replace certified monitoring systems.</p>
+        </section>
+
+        <section>
+          <h2>Why I built it</h2>
+          <p>I built this because it connects electronics with public health and environmental science. It also showed me how much calibration matters when sensor readings are affected by real-world conditions.</p>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>MQ sensors change their electrical response when exposed to certain gases. The Arduino reads this response and displays a value or alert. Temperature and humidity readings help provide context because the environment can affect gas sensor behavior.</p>
+        </section>
+
+        <section>
+          <h2>Step-by-step build process</h2>
+          <ol>              <li>Gather the Arduino, DHT11, MQ sensors, display, breadboard, and wires.</li>
+              <li>Read each sensor module label and datasheet because pins and warm-up needs can vary.</li>
+              <li>Connect and test one sensor at a time before combining them.</li>
+              <li>Upload simple sketches to read raw values.</li>
+              <li>Add the display after readings appear correctly in Serial Monitor.</li>
+              <li>Create rough baseline readings in clean air.</li>
+              <li>Test changes carefully and avoid unsafe exposure conditions.</li>
+              <li>Add an LED or buzzer threshold only after baseline testing.</li>
+              <li>Document how temperature and humidity affect the readings.</li>
+              <li>Plan better calibration and data logging.</li></ol>
+        </section>
+
+        <section>
+          <h2>Calibration or testing</h2>
+          <p>Each sensor needs baseline testing and repeated readings. MQ sensors often need warm-up time and can respond to more than one gas, so values should be interpreted carefully.</p>
+        </section>
+
+        <section>
+          <h2>Challenges faced</h2>
+          <ul>              <li>MQ sensors are not specific enough to identify one pollutant without context.</li>
+              <li>Calibration is more difficult than wiring the circuit.</li>
+              <li>Environmental conditions affected readings.</li></ul>
+        </section>
+
+        <section>
+          <h2>What I learned</h2>
+          <ul>              <li>Air quality data needs careful interpretation.</li>
+              <li>Sensor arrays can provide a broader picture than one sensor alone.</li>
+              <li>Environmental health projects need honesty about accuracy limits.</li></ul>
+        </section>
+
+        <section>
+          <h2>Future improvements</h2>
+          <ul>              <li>Add better data logging.</li>
+              <li>Add graphs and trends.</li>
+              <li>Compare readings with local AQI data as a learning exercise.</li>
+              <li>Add a cleaner enclosure and portable power.</li>
+              <li>Explore particulate matter sensors.</li></ul>
+        </section>
+
+        <section>
+          <h2>Safety or accuracy note</h2>
+          <p>Low-cost sensors need calibration and should be treated as approximate indicators, not certified measurements.</p>
+        </section>
+
+        <section class="related-section">
+          <h2>Related projects</h2>
+          <div class="related-grid">
+            <a class="related-card" href="weather-station.html"><span>Environmental Monitoring</span><strong>Building My Weather Station</strong><small>6 min read</small></a><a class="related-card" href="soil-moisture-meter.html"><span>Environmental Monitoring</span><strong>Creating a Soil Moisture Meter</strong><small>6 min read</small></a>
+          </div>
+        </section>
+
+        <nav class="article-nav" aria-label="Article navigation">
+          <a href="weather-station.html">← Previous: Building My Weather Station</a>
+          <a href="../articles.html">Back to all articles</a>
+          <a href="smart-walking-stick.html">Next: Smart Walking Stick Using Arduino UNO →</a>
+        </nav>
+      </div>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="../script.js"></script>
+</body>
+</html>

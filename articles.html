@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles | The BioChem Chronicles</title>
+  <meta name="description" content="Search and filter Avanthika Ashokkumar's BioChem Chronicles article pages for Arduino, biosensors, health monitoring, assistive technology, and environmental monitoring projects." />
+  <meta property="og:title" content="Articles | The BioChem Chronicles" />
+  <meta property="og:description" content="A complete article index for student-built science projects and project notes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/diagrams/biochem-chronicles-introduction.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="articles">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav-brand" href="index.html#home" aria-label="The BioChem Chronicles home">
+      <img src="favicon.svg" alt="The BioChem Chronicles logo" width="32" height="32" />
+      <span>The BioChem Chronicles</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="index.html#explainers">3D Explainers</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#mentors">For Mentors</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <section class="page-hero section-pad compact-hero">
+    <div class="container">
+      <p class="eyebrow">Article library</p>
+      <h1>All BioChem Chronicles articles</h1>
+      <p class="lead">Search by topic, filter by category, and open the full project page for materials, build steps, testing notes, and limitations.</p>
+    </div>
+  </section>
+  <section class="section-pad">
+    <div class="container">
+      <div class="article-controls" aria-label="Article search and filters">
+        <label for="articleSearch">Search articles</label>
+        <input id="articleSearch" type="search" placeholder="Try Arduino, biosensors, air quality, assistive technology" />
+        <div class="filter-bar" id="articleFilterBar"></div>
+      </div>
+      <div class="card-grid" id="articleIndexGrid"></div>
+      <div class="empty-state" id="articleEmptyState" hidden>
+        <h2>No matching articles</h2>
+        <p>Try a broader search term or choose the All filter.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>The BioChem Chronicles</h2>
+      <p>A student-led science communication and project portfolio by Avanthika Ashokkumar.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="index.html#explainers">3D Explainers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li><a href="mailto:avanthika.ashokkumar@gmail.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/avanthika-ashokkumar-819445342" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/avanthikaashokkumar-ui" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">Last updated <span id="year">2026</span>. Built with HTML, CSS, and JavaScript for GitHub Pages.</div>
+</footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

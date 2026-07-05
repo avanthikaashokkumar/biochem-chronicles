@@ -727,6 +727,60 @@ const EXPLAINER_DATA = [
   }
 ];
 
+const EXPLAINER_COMPONENTS = {
+  "blood-oxygen-heart-rate-monitor": [
+    { "name": "MAX30102 sensor", "type": "sensor", "detail": "red and infrared light module" },
+    { "name": "Arduino UNO", "type": "board", "detail": "microcontroller board" },
+    { "name": "LCD display", "type": "display", "detail": "shows heart rate and SpO2 trends" },
+    { "name": "Jumper wires", "type": "wires", "detail": "connects sensor, board, and display" }
+  ],
+  "soil-moisture-meter": [
+    { "name": "Capacitive probe", "type": "probe", "detail": "sits in the soil sample" },
+    { "name": "Arduino UNO", "type": "board", "detail": "reads the sensor signal" },
+    { "name": "OLED or LCD", "type": "display", "detail": "shows the moisture reading" },
+    { "name": "Breadboard", "type": "breadboard", "detail": "keeps the prototype rewritable" }
+  ],
+  "air-quality-monitor": [
+    { "name": "MQ gas sensors", "type": "gas", "detail": "detects rough gas changes" },
+    { "name": "DHT11 sensor", "type": "sensor", "detail": "tracks temperature and humidity" },
+    { "name": "Arduino UNO", "type": "board", "detail": "processes all sensor readings" },
+    { "name": "Alert output", "type": "alert", "detail": "display, LED, or buzzer" }
+  ],
+  "smart-walking-stick": [
+    { "name": "HC-SR04 sensor", "type": "ultrasonic", "detail": "checks obstacle distance" },
+    { "name": "Arduino UNO", "type": "board", "detail": "runs the distance logic" },
+    { "name": "Buzzer and LED", "type": "alert", "detail": "warns when something is close" },
+    { "name": "Walking stick body", "type": "enclosure", "detail": "holds the prototype parts" }
+  ],
+  "automatic-pill-dispenser": [
+    { "name": "RTC module", "type": "clock", "detail": "keeps schedule time" },
+    { "name": "Servo motor", "type": "servo", "detail": "moves the dispenser" },
+    { "name": "Pill organizer", "type": "pill", "detail": "stores dose compartments" },
+    { "name": "Buzzer and display", "type": "alert", "detail": "reminds the user" }
+  ],
+  "weather-station": [
+    { "name": "DHT11 sensor", "type": "sensor", "detail": "reads temperature and humidity" },
+    { "name": "RTC module", "type": "clock", "detail": "adds a time stamp" },
+    { "name": "Arduino UNO", "type": "board", "detail": "processes local weather data" },
+    { "name": "LCD or OLED", "type": "display", "detail": "shows current readings" }
+  ]
+};
+
+function renderComponentScene(item) {
+  const components = EXPLAINER_COMPONENTS[item.id] || [];
+  return `
+    <div class="component-scene" role="img" aria-label="3D-style material layout for ${escapeHtml(item.title)}">
+      <div class="scene-base"></div>
+      ${components.map((component, index) => `
+        <button type="button" class="component-object component-${escapeHtml(component.type)} component-${index + 1}" data-explainer="${item.id}" data-index="${index}">
+          <span class="component-shape" aria-hidden="true"></span>
+          <span class="component-name">${escapeHtml(component.name)}</span>
+          <span class="component-detail">${escapeHtml(component.detail)}</span>
+        </button>`).join("")}
+    </div>`;
+}
+
+
 const CATEGORY_ALL = "All";
 
 function escapeHtml(value) {
@@ -810,13 +864,8 @@ function renderExplainers() {
   if (!list) return;
   list.innerHTML = EXPLAINER_DATA.map((item) => `
     <article class="explainer-card reveal">
-      <div class="explainer-model" aria-label="Interactive model for ${escapeHtml(item.title)}">
-        <div class="model-stage">
-          <div class="model-layer layer-one"></div>
-          <div class="model-layer layer-two"></div>
-          <div class="model-layer layer-three"></div>
-          ${item.parts.map((part, index) => `<button type="button" class="hotspot hotspot-${index + 1}" data-explainer="${item.id}" data-index="${index}">${escapeHtml(part)}</button>`).join("")}
-        </div>
+      <div class="explainer-model">
+        ${renderComponentScene(item)}
       </div>
       <div class="explainer-copy">
         <p class="eyebrow">${escapeHtml(item.category)}</p>
@@ -838,10 +887,10 @@ function renderExplainers() {
     const button = event.target.closest(".hotspot");
     if (!button) return;
     const item = EXPLAINER_DATA.find((entry) => entry.id === button.dataset.explainer);
-    const part = item.parts[Number(button.dataset.index)];
+    const component = (EXPLAINER_COMPONENTS[item.id] || [])[Number(button.dataset.index)];
     const detail = document.getElementById(`detail-${item.id}`);
-    detail.innerHTML = `<strong>${escapeHtml(part)}</strong><p>${escapeHtml(item.simple)}</p><strong>Scientific explanation</strong><p>${escapeHtml(item.scientific)}</p><strong>Why it matters</strong><p>${escapeHtml(item.why)}</p>`;
-    button.closest(".model-stage").querySelectorAll(".hotspot").forEach((hotspot) => hotspot.classList.remove("active"));
+    detail.innerHTML = `<strong>${escapeHtml(component.name)}</strong><p>${escapeHtml(component.detail)}</p><strong>How this part fits in</strong><p>${escapeHtml(item.simple)}</p><strong>Scientific explanation</strong><p>${escapeHtml(item.scientific)}</p><strong>Why it matters</strong><p>${escapeHtml(item.why)}</p>`;
+    button.closest(".component-scene").querySelectorAll(".component-object").forEach((componentButton) => componentButton.classList.remove("active"));
     button.classList.add("active");
   });
 }

@@ -6,10 +6,8 @@ The site documents student-built Arduino prototypes, environmental monitoring pr
 
 ## Live Demo
 
-Replace this after deployment:
-
 ```txt
-https://avanthikaashokkumar-ui.github.io/biochem-chronicles/
+https://avanthikaashokkumar.github.io/biochem-chronicles/
 ```
 
 ## Screenshot
@@ -165,3 +163,12 @@ Designed and built The BioChem Chronicles, a static science communication portfo
 ## License Note
 
 The website code is released under the MIT License. Project text and diagrams may be reused with attribution unless a future license states otherwise.
+
+
+## Latest feedback fixes
+
+- Flow diagrams fit inside article cards without horizontal scrolling.
+- The 3D Explainers section now uses larger local material setup visuals with clickable parts.
+- The contact section states that the best way to reach Avanthika is via email.
+- The logo uses an AA triangle mark with connected nodes.
+- The For Mentors navigation tab and section have darker contrast.

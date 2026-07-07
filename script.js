@@ -769,10 +769,16 @@ const EXPLAINER_COMPONENTS = {
 function renderComponentScene(item) {
   const components = EXPLAINER_COMPONENTS[item.id] || [];
   return `
-    <div class="component-scene" role="img" aria-label="3D-style material layout for ${escapeHtml(item.title)}">
+    <div class="component-scene" role="img" aria-label="3D-style material and setup layout for ${escapeHtml(item.title)}">
+      <svg class="component-wires-layer" viewBox="0 0 440 360" aria-hidden="true" focusable="false">
+        <path d="M124 120 C174 116 232 118 288 134" />
+        <path d="M130 250 C180 224 236 220 300 248" />
+        <path d="M86 150 C96 194 98 222 102 252" />
+        <path d="M344 158 C342 196 342 222 344 250" />
+      </svg>
       <div class="scene-base"></div>
       ${components.map((component, index) => `
-        <button type="button" class="component-object component-${escapeHtml(component.type)} component-${index + 1}" data-explainer="${item.id}" data-index="${index}">
+        <button type="button" class="component-object component-${escapeHtml(component.type)} component-${index + 1}" data-explainer="${item.id}" data-index="${index}" aria-label="Explain ${escapeHtml(component.name)}">
           <span class="component-shape" aria-hidden="true"></span>
           <span class="component-name">${escapeHtml(component.name)}</span>
           <span class="component-detail">${escapeHtml(component.detail)}</span>
@@ -883,8 +889,13 @@ function renderExplainers() {
       </div>
     </article>`).join("");
 
+  list.querySelectorAll(".component-scene").forEach((scene) => {
+    const firstPart = scene.querySelector(".component-object");
+    if (firstPart) firstPart.classList.add("active");
+  });
+
   list.addEventListener("click", (event) => {
-    const button = event.target.closest(".hotspot");
+    const button = event.target.closest(".component-object");
     if (!button) return;
     const item = EXPLAINER_DATA.find((entry) => entry.id === button.dataset.explainer);
     const component = (EXPLAINER_COMPONENTS[item.id] || [])[Number(button.dataset.index)];

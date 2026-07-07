@@ -1,6 +1,6 @@
 # The BioChem Chronicles
 
-The BioChem Chronicles is a static science communication and project portfolio website by Avanthika Ashokkumar, an incoming Rutgers University New Brunswick undergraduate planning to study Biotechnology and Bioinformatics with a Data Science minor interest.
+The BioChem Chronicles is a static science communication and project portfolio website by Avanthika Ashokkumar, A rising sophomore at Rutgers University, New Brunswick, planning to study Biotechnology, Bioinformatics, and Chemical  Data Science.
 
 The site documents student-built Arduino prototypes, environmental monitoring projects, assistive technology ideas, and planned bioinformatics learning. It is designed for GitHub Pages, professor outreach, LinkedIn, internship applications, and scholarship opportunities.
 

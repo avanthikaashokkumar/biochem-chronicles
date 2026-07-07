@@ -8,7 +8,7 @@
 - Removed placeholder note cards and unfinished sections.
 - Added custom local SVG diagrams for all article pages.
 - Added materials, tools, build steps, calibration notes, limitations, and safety notes.
-- Added CSS-based 3D-style explainers with interactive hotspots.
+- Added CSS-based 3D-style explainers with interactive component cards.
 - Added downloadable one-page project summary PDFs.
 - Added image attribution documentation.
 - Improved accessibility, mobile layout, and GitHub Pages paths.

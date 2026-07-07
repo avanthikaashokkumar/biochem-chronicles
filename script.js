@@ -766,24 +766,251 @@ const EXPLAINER_COMPONENTS = {
   ]
 };
 
+const ARTICLE_FLOW_STEPS = {
+  "blood-oxygen-heart-rate-monitor": [
+    { title: "Finger contact", role: "Input", detail: "The fingertip sits steadily on the MAX30102 sensor so light can pass into the tissue and reflect back." },
+    { title: "Light signal", role: "Sensor", detail: "Red and infrared light readings change with pulse-related blood volume changes." },
+    { title: "Arduino processing", role: "Controller", detail: "The Arduino reads the sensor data and estimates heart rate and oxygen trend values for learning." },
+    { title: "LCD reading", role: "Output", detail: "The display shows the values, with a reminder that this is not a medical device." }
+  ],
+  "soil-moisture-meter": [
+    { title: "Soil sample", role: "Input", detail: "The probe is placed into soil so dry, damp, and wet conditions can be compared." },
+    { title: "Moisture signal", role: "Sensor", detail: "The capacitive probe changes its output as moisture around it changes." },
+    { title: "Arduino reading", role: "Controller", detail: "The Arduino reads the sensor value and converts it into a simple moisture level." },
+    { title: "Display result", role: "Output", detail: "The screen shows a rough plant-care reading, with calibration notes kept in the project writeup." }
+  ],
+  "diy-thermal-gun": [
+    { title: "Surface target", role: "Input", detail: "The sensor is pointed at a surface from a steady distance." },
+    { title: "Infrared reading", role: "Sensor", detail: "The infrared sensor detects emitted heat from the surface." },
+    { title: "Arduino conversion", role: "Controller", detail: "The Arduino converts the sensor output into a temperature reading." },
+    { title: "Display check", role: "Output", detail: "The screen shows an approximate value for learning and comparison, not diagnosis." }
+  ],
+  "automatic-pill-dispenser": [
+    { title: "Schedule set", role: "Input", detail: "The real-time clock provides the time for a reminder event." },
+    { title: "Arduino logic", role: "Controller", detail: "The Arduino checks the schedule and decides when to trigger the dispenser." },
+    { title: "Servo movement", role: "Action", detail: "The servo moves the organizer or compartment mechanism." },
+    { title: "Reminder alert", role: "Output", detail: "The buzzer, LEDs, or display remind the user, with safety checks kept central." }
+  ],
+  "weather-station": [
+    { title: "Local air", role: "Input", detail: "The sensor is placed in the environment being measured, away from direct heat or moisture." },
+    { title: "DHT11 reading", role: "Sensor", detail: "The DHT11 captures temperature and humidity values." },
+    { title: "Time stamp", role: "Controller", detail: "The Arduino and optional RTC organize readings with time context." },
+    { title: "Display data", role: "Output", detail: "The screen shows current readings, which can later become logged data." }
+  ],
+  "air-quality-monitor": [
+    { title: "Air sample", role: "Input", detail: "The sensors respond to the nearby air conditions around the prototype." },
+    { title: "Gas response", role: "Sensor", detail: "MQ sensors change resistance when exposed to gases, but they need warm-up and calibration." },
+    { title: "Arduino baseline", role: "Controller", detail: "The Arduino compares readings against a baseline instead of treating them as exact values." },
+    { title: "Alert or display", role: "Output", detail: "The output gives a rough air-quality indicator for environmental awareness." }
+  ],
+  "smart-walking-stick": [
+    { title: "Obstacle nearby", role: "Input", detail: "An object comes within range of the front-facing ultrasonic sensor." },
+    { title: "Echo timing", role: "Sensor", detail: "The HC-SR04 sends a pulse and measures how long the echo takes to return." },
+    { title: "Distance logic", role: "Controller", detail: "The Arduino estimates distance and checks whether it crosses the alert threshold." },
+    { title: "Buzzer or LED", role: "Output", detail: "The alert warns that something is close, while testing stays supervised and safe." }
+  ]
+};
+
 function renderComponentScene(item) {
   const components = EXPLAINER_COMPONENTS[item.id] || [];
   return `
-    <div class="component-scene" role="img" aria-label="3D-style material and setup layout for ${escapeHtml(item.title)}">
-      <svg class="component-wires-layer" viewBox="0 0 440 360" aria-hidden="true" focusable="false">
-        <path d="M124 120 C174 116 232 118 288 134" />
-        <path d="M130 250 C180 224 236 220 300 248" />
-        <path d="M86 150 C96 194 98 222 102 252" />
-        <path d="M344 158 C342 196 342 222 344 250" />
-      </svg>
+    <div class="component-scene" role="img" aria-label="3D-style material layout for ${escapeHtml(item.title)}">
       <div class="scene-base"></div>
+      <div class="setup-wire wire-1" aria-hidden="true"></div>
+      <div class="setup-wire wire-2" aria-hidden="true"></div>
+      <div class="setup-wire wire-3" aria-hidden="true"></div>
       ${components.map((component, index) => `
-        <button type="button" class="component-object component-${escapeHtml(component.type)} component-${index + 1}" data-explainer="${item.id}" data-index="${index}" aria-label="Explain ${escapeHtml(component.name)}">
+        <button type="button" class="component-object component-${escapeHtml(component.type)} component-${index + 1}" data-explainer="${item.id}" data-index="${index}">
           <span class="component-shape" aria-hidden="true"></span>
           <span class="component-name">${escapeHtml(component.name)}</span>
           <span class="component-detail">${escapeHtml(component.detail)}</span>
         </button>`).join("")}
     </div>`;
+}
+
+function getCurrentArticleSlug() {
+  const fileName = window.location.pathname.split("/").pop() || "";
+  return fileName.replace(".html", "");
+}
+
+function getMaterialType(name) {
+  const value = name.toLowerCase();
+  if (value.includes("arduino")) return "board";
+  if (value.includes("breadboard")) return "breadboard";
+  if (value.includes("jumper") || value.includes("wire")) return "wires";
+  if (value.includes("display") || value.includes("lcd") || value.includes("oled")) return "display";
+  if (value.includes("battery") || value.includes("usb") || value.includes("power")) return "power";
+  if (value.includes("rtc") || value.includes("clock")) return "clock";
+  if (value.includes("servo")) return "servo";
+  if (value.includes("buzzer") || value.includes("led") || value.includes("alert")) return "alert";
+  if (value.includes("pill")) return "pill";
+  if (value.includes("stick") || value.includes("pipe") || value.includes("enclosure") || value.includes("mount")) return "enclosure";
+  if (value.includes("soil") || value.includes("probe")) return "probe";
+  if (value.includes("sensor") || value.includes("max") || value.includes("dht") || value.includes("mq") || value.includes("mlx") || value.includes("hc-sr04")) return "sensor";
+  return "tool";
+}
+
+function renderMaterialIcon(type) {
+  return `
+    <span class="material-art material-art-${escapeHtml(type)}" aria-hidden="true">
+      <span class="art-piece art-main"></span>
+      <span class="art-piece art-accent"></span>
+      <span class="art-piece art-pin art-pin-1"></span>
+      <span class="art-piece art-pin art-pin-2"></span>
+      <span class="art-piece art-pin art-pin-3"></span>
+    </span>`;
+}
+
+function renderMaterialCard(name, index) {
+  const type = getMaterialType(name);
+  return `
+    <article class="material-card reveal" style="--delay:${index}">
+      ${renderMaterialIcon(type)}
+      <div>
+        <h3>${escapeHtml(name)}</h3>
+        <p>${escapeHtml(materialDescription(type))}</p>
+      </div>
+    </article>`;
+}
+
+function materialDescription(type) {
+  const descriptions = {
+    board: "The microcontroller that runs the code and coordinates the parts.",
+    breadboard: "A reusable base for testing connections before making anything permanent.",
+    wires: "The small connections that carry power and signals between components.",
+    display: "The output screen that makes readings visible during testing.",
+    power: "The power source or cable that keeps the prototype running.",
+    clock: "The timing module used for schedules or time-stamped readings.",
+    servo: "A small motor used to move part of the build.",
+    alert: "A buzzer or light that turns sensor output into a visible or audible warning.",
+    pill: "The storage part of the medication reminder prototype.",
+    enclosure: "The physical body or mounting part that holds the build together.",
+    probe: "The sensing part that touches the sample or environment.",
+    sensor: "The part that detects a physical condition and turns it into data.",
+    tool: "A supporting material used to build, mount, or document the prototype."
+  };
+  return descriptions[type] || descriptions.tool;
+}
+
+function renderArticleSetupScene(article) {
+  const components = (EXPLAINER_COMPONENTS[article.slug] || article.materials.slice(0, 4).map((name) => ({
+    name,
+    type: getMaterialType(name),
+    detail: materialDescription(getMaterialType(name))
+  }))).slice(0, 4);
+  return `
+    <div class="article-setup-stage setup-${escapeHtml(article.slug)}" role="img" aria-label="3D-style construction view for ${escapeHtml(article.title)}">
+      <div class="setup-floor"></div>
+      <div class="setup-breadboard" aria-hidden="true"></div>
+      <div class="setup-cable cable-a" aria-hidden="true"></div>
+      <div class="setup-cable cable-b" aria-hidden="true"></div>
+      <div class="setup-cable cable-c" aria-hidden="true"></div>
+      ${components.map((component, index) => `
+        <div class="setup-part setup-part-${index + 1} setup-part-${escapeHtml(component.type || getMaterialType(component.name))}">
+          ${renderMaterialIcon(component.type || getMaterialType(component.name))}
+          <strong>${escapeHtml(component.name)}</strong>
+          <span>${escapeHtml(component.detail || materialDescription(component.type || getMaterialType(component.name)))}</span>
+        </div>`).join("")}
+    </div>`;
+}
+
+function getFlowSteps(article) {
+  return ARTICLE_FLOW_STEPS[article.slug] || [
+    { title: "Input", role: "Start", detail: "The project begins with a physical condition or user action." },
+    { title: "Sensor reading", role: "Measure", detail: "The sensor turns that condition into a signal." },
+    { title: "Arduino logic", role: "Process", detail: "The Arduino reads the signal and applies the project code." },
+    { title: "Output", role: "Result", detail: "The display, alert, or data record shows the result." }
+  ];
+}
+
+function renderInteractiveFlow(article) {
+  const steps = getFlowSteps(article);
+  return `
+    <div class="interactive-flow" data-flow="${escapeHtml(article.slug)}">
+      <div class="flow-steps" aria-label="Clickable build flow for ${escapeHtml(article.title)}">
+        ${steps.map((step, index) => `
+          <button type="button" class="flow-step ${index === 0 ? "active" : ""}" data-flow-step="${index}" aria-pressed="${index === 0 ? "true" : "false"}">
+            <span class="flow-number">${index + 1}</span>
+            <span class="flow-role">${escapeHtml(step.role)}</span>
+            <strong>${escapeHtml(step.title)}</strong>
+          </button>`).join("")}
+      </div>
+      <div class="flow-detail" id="flowDetail-${escapeHtml(article.slug)}" aria-live="polite">
+        <span>${escapeHtml(steps[0].role)}</span>
+        <h3>${escapeHtml(steps[0].title)}</h3>
+        <p>${escapeHtml(steps[0].detail)}</p>
+      </div>
+    </div>`;
+}
+
+function setupInteractiveFlow(root, article) {
+  const flow = root.querySelector(".interactive-flow");
+  if (!flow) return;
+  const detail = flow.querySelector(".flow-detail");
+  const steps = getFlowSteps(article);
+  flow.addEventListener("click", (event) => {
+    const button = event.target.closest(".flow-step");
+    if (!button) return;
+    const index = Number(button.dataset.flowStep);
+    const step = steps[index];
+    if (!step || !detail) return;
+    flow.querySelectorAll(".flow-step").forEach((item) => {
+      item.classList.remove("active");
+      item.setAttribute("aria-pressed", "false");
+    });
+    button.classList.add("active");
+    button.setAttribute("aria-pressed", "true");
+    detail.innerHTML = `<span>${escapeHtml(step.role)}</span><h3>${escapeHtml(step.title)}</h3><p>${escapeHtml(step.detail)}</p>`;
+  });
+}
+
+function setupArticleVisualSections() {
+  if (!document.body.classList.contains("article-page")) return;
+  if (document.querySelector(".article-materials-section")) return;
+  const slug = getCurrentArticleSlug();
+  const article = ARTICLE_DATA.find((item) => item.slug === slug);
+  if (!article || slug === "biochem-chronicles-introduction") return;
+
+  const heroFigure = document.querySelector(".article-figure");
+  if (heroFigure) {
+    heroFigure.classList.add("article-hero-materials");
+    heroFigure.innerHTML = `
+      <div class="hero-material-panel" aria-label="Animated materials preview for ${escapeHtml(article.title)}">
+        ${article.materials.slice(0, 4).map((name, index) => renderMaterialCard(name, index)).join("")}
+      </div>
+      <figcaption>Animated material preview for this build. The full setup view appears below.</figcaption>`;
+  }
+
+  const articleBody = document.querySelector(".article-body");
+  if (!articleBody) return;
+  const buildSection = [...articleBody.querySelectorAll("section")].find((section) => {
+    const heading = section.querySelector("h2");
+    return heading && heading.textContent.toLowerCase().includes("step-by-step");
+  });
+  if (!buildSection) return;
+
+  const visualBlock = document.createElement("div");
+  visualBlock.className = "article-visual-inserts";
+  visualBlock.innerHTML = `
+    <section class="article-materials-section">
+      <h2>Materials used</h2>
+      <p>These are animated component-style visuals, not copied product photos. They are designed to show what each part does without using copyrighted product images.</p>
+      <div class="material-showcase">
+        ${article.materials.map((name, index) => renderMaterialCard(name, index)).join("")}
+      </div>
+    </section>
+    <section class="article-setup-section">
+      <h2>3D setup view</h2>
+      <p>This construction view shows how the main parts sit together in the prototype: board, sensor, display or alert output, wires, and power.</p>
+      ${renderArticleSetupScene(article)}
+    </section>
+    <section class="article-flow-section">
+      <h2>Clickable build flow</h2>
+      <p>Click each stage to see what happens at that point in the project.</p>
+      ${renderInteractiveFlow(article)}
+    </section>`;
+  articleBody.insertBefore(visualBlock, buildSection);
+  setupInteractiveFlow(visualBlock, article);
 }
 
 
@@ -889,16 +1116,13 @@ function renderExplainers() {
       </div>
     </article>`).join("");
 
-  list.querySelectorAll(".component-scene").forEach((scene) => {
-    const firstPart = scene.querySelector(".component-object");
-    if (firstPart) firstPart.classList.add("active");
-  });
-
   list.addEventListener("click", (event) => {
     const button = event.target.closest(".component-object");
     if (!button) return;
     const item = EXPLAINER_DATA.find((entry) => entry.id === button.dataset.explainer);
+    if (!item) return;
     const component = (EXPLAINER_COMPONENTS[item.id] || [])[Number(button.dataset.index)];
+    if (!component) return;
     const detail = document.getElementById(`detail-${item.id}`);
     detail.innerHTML = `<strong>${escapeHtml(component.name)}</strong><p>${escapeHtml(component.detail)}</p><strong>How this part fits in</strong><p>${escapeHtml(item.simple)}</p><strong>Scientific explanation</strong><p>${escapeHtml(item.scientific)}</p><strong>Why it matters</strong><p>${escapeHtml(item.why)}</p>`;
     button.closest(".component-scene").querySelectorAll(".component-object").forEach((componentButton) => componentButton.classList.remove("active"));
@@ -1021,6 +1245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   renderExplainers();
   setupArticleIndex();
+  setupArticleVisualSections();
   setupNav();
   setupBackToTop();
   setupReadingProgress();

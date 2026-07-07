@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AA triangle science logo">
-  <rect width="64" height="64" rx="15" fill="#0a4f47"/>
-  <path d="M32 9 L53 47 H11 Z" fill="#ffffff" opacity="0.96"/>
-  <path d="M32 9 L53 47 H11 Z" fill="none" stroke="#102522" stroke-width="2.2" stroke-linejoin="round"/>
-  <circle cx="32" cy="9" r="4.4" fill="#e0fff7" stroke="#0a4f47" stroke-width="2"/>
-  <circle cx="53" cy="47" r="4.4" fill="#e0fff7" stroke="#0a4f47" stroke-width="2"/>
-  <circle cx="11" cy="47" r="4.4" fill="#e0fff7" stroke="#0a4f47" stroke-width="2"/>
-  <path d="M32 13.5 L32 28.5 M16 44 L27.5 31.2 M48 44 L36.5 31.2" fill="none" stroke="#0a4f47" stroke-width="2.4" stroke-linecap="round"/>
-  <text x="32" y="41" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="-2" fill="#0a4f47">AA</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AA triangle logo for The BioChem Chronicles">
+  <rect width="64" height="64" rx="16" fill="#0a4f47"/>
+  <path d="M32 12 L50 44 L14 44 Z" fill="#0e6e63" stroke="#dff7f1" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M32 12 L50 44 M50 44 L14 44 M14 44 L32 12" fill="none" stroke="#dff7f1" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="12" r="5.5" fill="#ffffff" stroke="#b7eee5" stroke-width="2"/>
+  <circle cx="50" cy="44" r="5.5" fill="#ffffff" stroke="#b7eee5" stroke-width="2"/>
+  <circle cx="14" cy="44" r="5.5" fill="#ffffff" stroke="#b7eee5" stroke-width="2"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="800" fill="#ffffff">AA</text>
 </svg>
